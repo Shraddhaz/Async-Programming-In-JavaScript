@@ -38,13 +38,32 @@ window.onload = function () {
 
     //Solution using Promises
     document.getElementById("promise").onclick = function(){
-        const printA = new Promise((resolve,reject) => {
+        const printA = new Promise((resolve,reject,err) => {
             setTimeout(function () {
                 document.getElementById("promise-div").innerHTML += "<br>A";
-                resolve();
+                if(!err)
+                    resolve("Everything is fine");
+                else
+                    reject("Error");
             },3000);
         });
+        const B = function printB() {
+            setTimeout( function () {
+                document.getElementById("promise-div").innerHTML += "<br>B";
+            },1000);
+        }
+
+        printA.then((val)=> {
+                console.log(val);
+            })
+            .then(B)
+            .catch((reason)=>console.log(reason));
     };
+
+    //Solution using Async-Await
+    document.getElementById("async").onclick = function () {
+        
+    }
 
 
 };
