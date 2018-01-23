@@ -39,7 +39,10 @@ window.onload = function () {
     //Solution using Promises
     document.getElementById("promise").onclick = function(){
         const printA = new Promise((resolve,reject) => {
-            //setTimeout(,3000);
+            setTimeout(function () {
+                document.getElementById("promise-div").innerHTML += "<br>A";
+                resolve();
+            },3000);
         });
     };
 
