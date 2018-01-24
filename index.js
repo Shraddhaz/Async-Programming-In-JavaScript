@@ -38,6 +38,7 @@ window.onload = function () {
 
     //Solution using Promises
     document.getElementById("promise").onclick = function(){
+
         const printA = new Promise((resolve,reject,err) => {
             setTimeout(function () {
                 document.getElementById("promise-div").innerHTML += "<br>A";
@@ -47,6 +48,7 @@ window.onload = function () {
                     reject("Error");
             },3000);
         });
+
         const B = function printB() {
             setTimeout( function () {
                 document.getElementById("promise-div").innerHTML += "<br>B";
@@ -62,7 +64,28 @@ window.onload = function () {
 
     //Solution using Async-Await
     document.getElementById("async").onclick = function () {
-        
+        async function printA() {
+            return await  new Promise((resolve,reject,err) => {
+                    setTimeout(function () {
+                        document.getElementById("async-div").innerHTML += "<br>A";
+                        if(!err){
+                            resolve();
+                        }
+                        else
+                            reject();
+                    },3000);
+                });
+            }
+
+        function printB(){
+            setTimeout(function () {
+                document.getElementById("async-div").innerHTML += "<br>B";
+            },1000)
+        }
+
+        printA()
+            .then(printB)
+            .catch((reason) => console.log(reason));
     }
 
 
