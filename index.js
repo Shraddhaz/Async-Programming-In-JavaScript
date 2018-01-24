@@ -38,10 +38,10 @@ window.onload = function () {
 
     //Solution using Promises
     document.getElementById("promise").onclick = function(){
-
         const printA = new Promise((resolve,reject,err) => {
             setTimeout(function () {
                 document.getElementById("promise-div").innerHTML += "<br>A";
+
                 if(!err)
                     resolve("Everything is fine");
                 else
@@ -76,7 +76,6 @@ window.onload = function () {
                     },3000);
                 });
             }
-
         function printB(){
             setTimeout(function () {
                 document.getElementById("async-div").innerHTML += "<br>B";
@@ -88,6 +87,33 @@ window.onload = function () {
             .catch((reason) => console.log(reason));
     }
 
+    //Map
+    var arr = ['apple', 'mango', 'pineapple', 'guava', 'grapes'];
+    document.getElementById("map-button").onclick = function () {
+        const mapFun = function () {
+            var new_arr = arr.map(arr => "\n" + arr+ " is a fruit");
+            document.getElementById("map").innerText = new_arr;
+        }
+        mapFun();
+    }
+
+    //Filter
+    document.getElementById("filter-button").onclick = function () {
+        const filterFun = function () {
+            var new_arr = arr.filter(arr => arr.length==5);
+            document.getElementById("filter").innerText = new_arr;
+        }
+        filterFun();
+    }
+
+    //Reduce
+    document.getElementById("reduce-button").onclick = function () {
+        const reduceFun = function () {
+            var new_arr = arr.reduce((arr,curr) => (arr + " " + "hey" + " " + curr));
+            document.getElementById("reduce").innerText = new_arr;
+        }
+        reduceFun();
+    }
 
 };
 
